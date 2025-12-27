@@ -3,9 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goodreads Stílusú Esemény Feed</title>
-    <link rel="stylesheet" href="src/mainStyle.css">
+    <title>Goodreads Stílusú Utazás Adatlap</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* --- ALAP BEÁLLÍTÁSOK --- */
+        body {
+            background-color: #f4f1ea; /* Goodreads bézs */
+            font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        a { text-decoration: none; color: #00635d; }
+        a:hover { text-decoration: underline; }
+
+        /* --- FŐ TÁROLÓ (Fehér doboz középen) --- */
+        .main-container {
+            background-color: #fff;
+            max-width: 960px; /* Szélesebb, mint a feed */
+            margin: 20px auto;
+            padding: 25px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            display: flex; /* Két oszlop létrehozása */
+            gap: 30px;
+        }
+
+        /* --- BAL OSZLOP (Kép és Gombok) --- */
+        .col-left {
+            width: 250px; /* Fix szélesség, mint a könyvborítónál */
+            flex-shrink: 0;
+        }
+
+        .travel-cover-container {
+            margin-bottom: 15px;
+        }
+
+        .travel-cover {
+            width: 100%;
+            height: auto;
+            border-radius: 4px; /* Kicsit modernebb, de maradhat szögletes is */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Ikonikus Zöld Gomb (Want to Read stílus) */
+        .wtr-button-container {
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        .wtr-button {
+            background-color: #409D69; /* Goodreads zöld */
+            color: white;
+            border: 1px solid #388a5c;
+            border-radius: 3px;
+            font-family: "Lato", sans-serif;
+            font-weight: bold;
+            font-size: 13px;
+            padding: 8px 0;
+            width: 100%;
+            cursor: pointer;
+            text-align: center;
+            display: block;
+            transition: background 0.2s;
+        }
+
+        .wtr-button:hover {
+            background-color: #388a5c;
+            text-decoration: none;
+        }
+
+        .rating-widget {
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .stars {
+            color: #ccc;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .stars span:hover, .stars span.active {
+            color: #FFAD33; /* Csillag sárga */
+        }
+        .rate-text {
+            font-size: 11px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        /* --- JOBB OSZLOP (Adatok és Leírás) --- */
+        .col-right {
+            flex-grow: 1;
+        }
+
+        /* Cím */
+        .travel-title {
+            font-family: "Merriweather", serif;
+            font-weight: bold;
+            font-size: 28px;
+            line-height: 1.2;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        /* Szervező / Helyszín sor */
+        .travel-author {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .travel-author span { color: #999; }
+        .travel-author a { font-weight: bold; color: #333; }
+
+        /* Meta adatok (Csillagok, Részletek) */
+        .travel-meta {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e8e8e8;
+            padding-bottom: 10px;
+        }
+
+        .meta-stars { color: #FFAD33; margin-right: 5px; }
+        .meta-divider { margin: 0 5px; }
+
+        /* Leírás szöveg */
+        .travel-description {
+            font-family: "Merriweather", serif; /* Vagy sima sans-serif, ízléstől függ */
+            font-size: 14px;
+            line-height: 1.6;
+            color: #181818;
+            margin-bottom: 20px;
+        }
+
+        /* --- GALÉRIA (A kért képek a cím alatt/leírásban) --- */
+        .gallery-label {
+            font-weight: bold;
+            font-size: 14px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 kép egymás mellett */
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 2px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        
+        .photo-grid img:hover {
+            opacity: 0.8;
+        }
+
+        /* --- ADATLAP TÁBLÁZAT (Részletek) --- */
+        .details-box {
+            font-size: 12px;
+            color: #333;
+            margin-top: 30px;
+        }
+        .detail-row { margin-bottom: 4px; }
+        .detail-label { font-weight: bold; color: #999; }
+
+        
+        .header{
+            display: flex;
+        }
+
+        .header-elem{
+            margin-left: 20px;
+        }
+
+        .header-elem:hover{
+            text-decoration: none;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -15,7 +202,7 @@
         </svg>
 
         <div class="primaryNav">
-            <a class="header-elem" id="home">Home</a>
+            <a class="header-elem" href="">Home</a>
             <a class="header-elem" href="">My Books</a>
             <a class="header-elem" href="">Browse</a>
             <a class="header-elem" href="">Community</a>
@@ -24,13 +211,75 @@
 
     </div>
 
-    <div class="feed-container">
-
-
-    
+    <div class="main-container">
         
+        <div class="col-left">
+            <div class="travel-cover-container">
+                <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Cinque Terre" class="travel-cover">
+            </div>
+
+            <div class="wtr-button-container">
+                <button class="wtr-button">Bakancslistára</button>
+            </div>
+            
+            <div class="rating-widget">
+                <div class="stars">
+                    <span class="active">★</span><span class="active">★</span><span class="active">★</span><span class="active">★</span><span>★</span>
+                </div>
+                <div class="rate-text">Rate this trip</div>
+            </div>
+        </div>
+
+        <div class="col-right">
+            
+            <div class="travel-title">
+                Olaszországi Álomtúra: Cinque Terre és a Toszkán Vidék
+            </div>
+
+            <div class="travel-author">
+                <span>Helyszín: </span> <a href="#">Olaszország</a> 
+                <span> | Szervező: </span> <a href="#">Wanderlust Travel</a>
+            </div>
+
+            <div class="travel-meta">
+                <span class="meta-stars">★★★★☆</span>
+                <span>4.82 átlagos értékelés</span>
+                <span class="meta-divider">·</span>
+                <span>1,240 jelentkező</span>
+                <span class="meta-divider">·</span>
+                <span>342 vélemény</span>
+            </div>
+
+            <div class="travel-description">
+                Fedezd fel Olaszország legszínesebb falvait és a toszkán dombvidék varázsát egy 7 napos kalandtúra keretében! 
+                <br><br>
+                Ez az utazás nem csak a látványról szól, hanem az ízekről is. A program része borkóstolás Chiantiban, tésztakészítő workshop Firenzében, és egy napos hajózás a Ligur-tengeren. A szállás autentikus olasz villákban történik, távol a nagyvárosok zajától.
+                <br><br>
+                A túra nehézségi szintje könnyű, így családok és idősebbek számára is ideális választás. Csatlakozz hozzánk és éld át a "Dolce Vita" életérzést!
+            </div>
+
+            <div class="gallery-label">Képek az útról</div>
+            <div class="photo-grid">
+                <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Taj">
+                <img src="https://images.unsplash.com/photo-1498503182468-3b51cbb6cb24?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Város">
+                <img src="https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Étel">
+            </div>
+
+            <div class="details-box">
+                <div class="detail-row">
+                    <span class="detail-label">Időpont:</span> 2024. Szeptember 10-17.
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Ár:</span> 450.000 Ft / fő
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Szabad helyek:</span> Még 4 hely kiadó
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
 </body>
-<script src="src/mainScript.js"></script>
 </html>

@@ -1,6 +1,5 @@
-/* --- ALAP BEÁLLÍTÁSOK (Goodreads stílus) --- */
 body {
-    background-color: #f4f1ea; /* Jellegzetes bézs háttér */
+    background-color: #f4f1ea; 
     font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
     margin: 0;
@@ -16,15 +15,13 @@ a:hover {
     text-decoration: underline;
 }
 
-/* --- KÖZÉPSŐ OSZLOP (FEED) --- */
 .feed-container {
-    max-width: 625px; /* A Goodreads középső sáv szélessége */
+    max-width: 625px; 
     margin: 0 auto;
     background-color: #fff;
-    padding: 15px; /* Opcionális: ha fehér dobozt akarsz */
+    padding: 15px; 
 }
 
-/* --- EGY BEJEGYZÉS (FEED ITEM) --- */
 .feed-item {
     display: flex;
     gap: 10px;
@@ -33,7 +30,6 @@ a:hover {
     margin-bottom: 15px;
 }
 
-/* --- BAL OLDAL: USER AVATAR --- */
 .user-avatar img {
     width: 50px;
     height: 50px;
@@ -41,12 +37,10 @@ a:hover {
     border: 1px solid #ddd;
 }
 
-/* --- JOBB OLDAL: TARTALOM --- */
 .feed-content {
     flex: 1;
 }
 
-/* --- FEJLÉC: Ki mit csinált --- */
 .feed-header {
     font-size: 14px;
     margin-bottom: 4px;
@@ -68,13 +62,11 @@ a:hover {
     margin-bottom: 10px;
 }
 
-/* --- KÁRTYA: Az esemény (Könyv helyett) --- */
 .event-card {
     display: flex;
     gap: 15px;
 }
 
-/* Esemény plakát (Könyvborító stílus) */
 .event-poster img {
     width: 98px; /* Goodreads standard borító szélesség */
     height: auto;
@@ -85,7 +77,6 @@ a:hover {
     flex: 1;
 }
 
-/* Esemény címe (Talpas betűtípus, mint a könyvcímek) */
 .event-title {
     font-family: "Merriweather", Georgia, "Times New Roman", serif;
     font-weight: bold;
@@ -96,7 +87,6 @@ a:hover {
     display: block;
 }
 
-/* Helyszín / Szervező */
 .event-organizer {
     font-size: 13px;
     color: #333;
@@ -107,7 +97,6 @@ a:hover {
     color: #666;
 }
 
-/* --- GOMB (Want to Read stílus) --- */
 .action-button-wrapper {
     margin-bottom: 10px;
     display: inline-block;
@@ -129,10 +118,8 @@ a:hover {
     background-color: #e6e6e6;
 }
 
-/* Ha zöld gombot szeretnél (mint a polcra tétel után): 
-    background-color: #f2f2f2 helyett #409D69, color: white */
+    /*background-color: #f2f2f2 helyett #409D69, color: white */
 
-/* --- LEÍRÁS --- */
 .event-description {
     font-size: 13px;
     line-height: 1.5;
@@ -141,12 +128,11 @@ a:hover {
 }
 
 .continue-link {
-    color: #00635d; /* Goodreads zöldes link szín */
+    color: #00635d; 
     font-size: 12px;
     margin-left: 5px;
 }
 
-/* --- LÁBLÉC: Like / Comment --- */
 .feed-footer {
     margin-top: 10px;
     font-size: 12px;
@@ -161,7 +147,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* --- KOMMENT SZEKCIÓ --- */
 .comment-box {
     display: flex;
     align-items: center;
