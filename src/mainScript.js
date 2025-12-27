@@ -27,7 +27,7 @@ for (let i = 0; i < items.length; i++) {
 }
 
 class Event {
-    constructor(title = "teszt", location="Sopron", date="2024.09.30", imgSrc="/src/pics/event.jpg", desc= "Teszt leírás") {
+    constructor(title = "teszt", location="Sopron", date="2024.09.30", imgSrc="src/pics/event.jpg", desc= "Teszt leírás") {
         this.title = title;
         this.location = location;
         this.date = date;
@@ -38,7 +38,7 @@ class Event {
         return `<div class="feed-item">
             <div class="user-avatar">
                 <a href="#">
-                    <img src="/src/pics/pfp.jpg" alt="Fábián Dóra">
+                    <img src="src/pics/pfp.jpg" alt="Fábián Dóra">
                 </a>
             </div>
 
@@ -53,7 +53,7 @@ class Event {
                 <div class="event-card">
                     <div class="event-poster">
                         <a href="#">
-                            <img src="https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80" alt="Koncert plakát">
+                            <img src="https://drive.google.com/file/d/1IO1wyHM1C4XjfyzikPStG7oEzwRy1vwS/view?usp=sharing" alt="Koncert plakát">
                         </a>
                     </div>
 
